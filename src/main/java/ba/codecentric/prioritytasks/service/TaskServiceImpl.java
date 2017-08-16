@@ -8,13 +8,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class TaskServiceImpl implements TaskService{
 
-    private TaskRepository taskRepository;
+    private final TaskRepository taskRepository;
 
     @Autowired
     public TaskServiceImpl (TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
 
+    @Override
     public Task saveTask (Task task) {
         return taskRepository.save(task);
     }
