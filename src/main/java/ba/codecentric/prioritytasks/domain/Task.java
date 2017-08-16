@@ -1,7 +1,6 @@
 package ba.codecentric.prioritytasks.domain;
 
-import org.hibernate.annotations.Entity;
-
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Date;
