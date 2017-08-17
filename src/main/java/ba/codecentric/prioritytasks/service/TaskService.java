@@ -1,9 +1,21 @@
 package ba.codecentric.prioritytasks.service;
 
-
 import ba.codecentric.prioritytasks.domain.Task;
+import ba.codecentric.prioritytasks.repository.TaskRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public interface TaskService {
+@Service
+public class TaskService {
 
-    Task saveTask (Task task);
+    private final TaskRepository taskRepository;
+
+    @Autowired
+    public TaskService(TaskRepository taskRepository) {
+        this.taskRepository = taskRepository;
+    }
+
+    public Task saveTask (Task task) {
+        return taskRepository.save(task);
+    }
 }
