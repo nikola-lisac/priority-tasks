@@ -19,7 +19,7 @@ public class TaskController {
     }
 
     @CrossOrigin
-    @PostMapping(value = "/task")
+    @PostMapping(value = "/tasks")
     public Task saveNewTask (@RequestBody Task task) {
         return taskService.saveTask(task);
     }
