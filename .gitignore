@@ -2,8 +2,8 @@
 build/
 
 ### IntelliJ IDEA ###
-.idea
+.idea/
 *.iws
-*.iml
+/*.iml
 *.ipr
 out/
