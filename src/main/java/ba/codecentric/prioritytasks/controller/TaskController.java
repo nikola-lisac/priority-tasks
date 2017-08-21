@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin
 public class TaskController {
 
     private final TaskService taskService;
@@ -18,7 +19,6 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @CrossOrigin
     @PostMapping(value = "/tasks")
     public Task saveNewTask (@RequestBody Task task) {
         return taskService.saveTask(task);
