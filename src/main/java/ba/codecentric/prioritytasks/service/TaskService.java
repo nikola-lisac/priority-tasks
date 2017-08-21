@@ -5,6 +5,8 @@ import ba.codecentric.prioritytasks.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TaskService {
 
@@ -15,7 +17,19 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
-    public Task saveTask (Task task) {
+    public Task saveTask(Task task) {
         return taskRepository.save(task);
+    }
+
+    public List<Task> getAllTask() {
+        return taskRepository.findAll();
+    }
+
+    public List<Task> getTodayTask() {
+        return taskRepository.findTodayTasks();
+    }
+
+    public List<Task> getTomorrowTask() {
+        return taskRepository.findTomorrowTasks();
     }
 }

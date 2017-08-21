@@ -15,27 +15,27 @@ public class Task {
     private Date createdAt;
     private boolean completed;
 
-    public Integer getId () {
+    public Integer getId() {
         return id;
     }
 
-    public void setId (Integer id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getName () {
+    public String getName() {
         return name;
     }
 
-    public void setName (String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public Date getCreatedAt () {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt (Date createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
