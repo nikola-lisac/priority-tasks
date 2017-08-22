@@ -32,13 +32,13 @@ public class TaskController {
 
     @GetMapping(value = "/tasks")
     public List<Task> getAllTasks() {
-        return taskService.getAllTask();
+        return taskService.getAllTasks();
     }
 
     @GetMapping(value = "/tasks/{date}")
     public List<Task> getAllTasks(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) throws Exception {
 
-        List<Task> tasks = taskService.getByCreatedAt(date);
+        List<Task> tasks = taskService.getAllTasks(date);
         if (tasks.isEmpty()) {
             throw new Exception("No more tasks");
         }

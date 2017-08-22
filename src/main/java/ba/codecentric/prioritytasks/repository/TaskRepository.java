@@ -11,5 +11,5 @@ import java.util.List;
 public interface TaskRepository extends JpaRepository<Task, Integer> {
 
     @Query(value = "SELECT t FROM Task t WHERE t.createdAt=?1 AND t.completed=false")
-    List<Task> findByCreatedAt(Date date);
+    List<Task> getAllTasks(Date date);
 }

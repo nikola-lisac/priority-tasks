@@ -22,11 +22,11 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
-    public List<Task> getAllTask() {
+    public List<Task> getAllTasks() {
         return taskRepository.findAll();
     }
 
-    public List<Task> getByCreatedAt(Date createdAt) {
-        return taskRepository.findByCreatedAt(createdAt);
+    public List<Task> getAllTasks(Date date) {
+        return taskRepository.getAllTasks(date);
     }
 }
