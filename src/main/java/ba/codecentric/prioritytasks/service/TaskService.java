@@ -5,6 +5,7 @@ import ba.codecentric.prioritytasks.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -25,11 +26,7 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
-    public List<Task> getTodayTask() {
-        return taskRepository.findTodayTasks();
-    }
-
-    public List<Task> getTomorrowTask() {
-        return taskRepository.findTomorrowTasks();
+    public List<Task> getByCreatedAt(Date createdAt) {
+        return taskRepository.findByCreatedAt(createdAt);
     }
 }
