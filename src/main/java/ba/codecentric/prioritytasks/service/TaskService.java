@@ -5,6 +5,9 @@ import ba.codecentric.prioritytasks.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.List;
+
 @Service
 public class TaskService {
 
@@ -15,7 +18,15 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
-    public Task saveTask (Task task) {
+    public Task saveTask(Task task) {
         return taskRepository.save(task);
+    }
+
+    public List<Task> getAllTasks() {
+        return taskRepository.findAll();
+    }
+
+    public List<Task> getAllTasks(Date date) {
+        return taskRepository.findByCreatedAt(date);
     }
 }
