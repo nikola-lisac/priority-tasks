@@ -27,6 +27,6 @@ public class TaskService {
     }
 
     public List<Task> getAllTasks(Date date) {
-        return taskRepository.getAllTasks(date);
+        return taskRepository.findByCreatedAt(date);
     }
 }
