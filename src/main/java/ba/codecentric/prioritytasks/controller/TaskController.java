@@ -19,35 +19,36 @@ import java.util.List;
 @CrossOrigin
 public class TaskController {
 
-    private final TaskService taskService;
+  private final TaskService taskService;
 
-    @Autowired
-    public TaskController(TaskService taskService) {
-        this.taskService = taskService;
+  @Autowired
+  public TaskController(TaskService taskService) {
+    this.taskService = taskService;
+  }
+
+  @PostMapping(value = "/tasks")
+  public Task saveNewTask(@RequestBody Task task) {
+    return taskService.saveTask(task);
+  }
+
+  @GetMapping(value = "/tasks")
+  public List<Task> getAllTasks() {
+    return taskService.getAllTasks();
+  }
+
+  @GetMapping(value = "/tasks/{date}")
+  public List<Task> getAllTasks(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date date)
+      throws Exception {
+
+    List<Task> tasks = taskService.getAllTasks(date);
+    if (tasks.isEmpty()) {
+      throw new Exception("No more tasks");
     }
+    return tasks;
+  }
 
-    @PostMapping(value = "/tasks")
-    public Task saveNewTask(@RequestBody Task task) {
-        return taskService.saveTask(task);
-    }
-
-    @GetMapping(value = "/tasks")
-    public List<Task> getAllTasks() {
-        return taskService.getAllTasks();
-    }
-
-    @GetMapping(value = "/tasks/{date}")
-    public List<Task> getAllTasks(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) throws Exception {
-
-        List<Task> tasks = taskService.getAllTasks(date);
-        if (tasks.isEmpty()) {
-            throw new Exception("No more tasks");
-        }
-        return tasks;
-    }
-
-    @DeleteMapping(value = "/tasks/{id}")
-    public void completeTask(@PathVariable Integer id) {
-        taskService.deleteTask(id);
-    }
+  @DeleteMapping(value = "/tasks/{id}")
+  public void completeTask(@PathVariable Integer id) {
+    taskService.deleteTask(id);
+  }
 }
