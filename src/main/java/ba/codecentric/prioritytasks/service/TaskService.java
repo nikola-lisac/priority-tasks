@@ -29,4 +29,7 @@ public class TaskService {
     public List<Task> getAllTasks(Date date) {
         return taskRepository.findByCreatedAt(date);
     }
+    public Task getTasks(int taskId){
+        return taskRepository.findOne(taskId);
+    }
 }
