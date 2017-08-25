@@ -64,3 +64,17 @@ public class TaskController {
         return taskService.saveTask(task);
     }
 }
+
+/*
+*   POST
+*   http://localhost:8080/tasks/6
+*
+*   Return
+*   {
+*    "id": 6,
+*    "name": "task",
+*    "createdAt": 1503764409645,
+*    "completed": false
+*   }
+*
+* */
