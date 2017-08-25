@@ -29,4 +29,6 @@ public class TaskService {
     public List<Task> getAllTasks(Date date) {
         return taskRepository.findByCreatedAt(date);
     }
+
+    public void deleteTask(Integer id) { taskRepository.delete(id); }
 }
