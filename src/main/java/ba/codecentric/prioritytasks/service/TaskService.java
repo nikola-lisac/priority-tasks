@@ -5,6 +5,7 @@ import ba.codecentric.prioritytasks.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 
@@ -30,7 +31,8 @@ public class TaskService {
     return taskRepository.findByCreatedAt(date);
   }
 
-  public void deleteTask(Integer id) {
-    taskRepository.delete(id);
+  @Transactional
+  public void updateComplete(Integer id) {
+    taskRepository.updateCompletedById(id);
   }
 }
