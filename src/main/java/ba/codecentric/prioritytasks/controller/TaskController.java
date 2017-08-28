@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -36,7 +36,7 @@ public class TaskController {
     }
 
     @GetMapping(value = "/tasks/{date}")
-    public List<Task> getAllTasks(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) throws Exception {
+    public List<Task> getAllTasks(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) throws Exception {
 
         List<Task> tasks = taskService.getAllTasks(date);
         if (tasks.isEmpty()) {
@@ -50,17 +50,3 @@ public class TaskController {
         return taskService.getTask(id);
     }
 }
-
-/*
-*   POST
-*   http://localhost:8080/tasks/6
-*
-*   Return
-*   {
-*    "id": 6,
-*    "name": "task",
-*    "createdAt": 1503764409645,
-*    "completed": false
-*   }
-*
-* */
