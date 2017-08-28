@@ -5,6 +5,7 @@ import ba.codecentric.prioritytasks.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -29,7 +30,21 @@ public class TaskService {
     public List<Task> getAllTasks(Date date) {
         return taskRepository.findByCreatedAt(date);
     }
-    public Task getTasks(int taskId){
-        return taskRepository.findOne(taskId);
+
+    public Task getTask(Integer taskId) throws Exception {
+
+        Task task = taskRepository.findOne(taskId);
+
+        if (task == null) {
+            throw new Exception("No task with that ID");
+        }
+
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.DATE, 1);
+        task.setCreatedAt(calendar.getTime());
+
+        return taskRepository.save(task);
     }
 }

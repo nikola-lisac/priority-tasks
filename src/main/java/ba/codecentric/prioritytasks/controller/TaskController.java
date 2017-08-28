@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -47,21 +46,8 @@ public class TaskController {
     }
 
     @PostMapping(value = "/tasks/{id}")
-    public Task postponeTasks(@PathVariable int id) throws Exception {
-
-        Task task = taskService.getTasks(id);
-
-        if (task == null) {
-            throw new Exception("No task with that ID");
-        }
-
-        Date date = new Date();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        calendar.add(Calendar.DATE, 1);
-        task.setCreatedAt(calendar.getTime());
-
-        return taskService.saveTask(task);
+    public Task postponeTasks(@PathVariable Integer id) throws Exception {
+        return taskService.getTask(id);
     }
 }
 
