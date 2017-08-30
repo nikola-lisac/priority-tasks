@@ -23,12 +23,25 @@ public class TaskService {
     }
 
     public List<Task> getAllTasks() {
-        List<Task> tttt = taskRepository.findAll();
         return taskRepository.findAll();
     }
 
     public List<Task> getAllTasks(LocalDate date) {
         return taskRepository.findByCreatedAt(date);
+    }
+
+    public Task postponeTasks(Integer taskId) throws Exception {
+
+        Task task = taskRepository.findOne(taskId);
+
+        if (task == null) {
+            throw new Exception("No task with that ID");
+        }
+
+        LocalDate date = LocalDate.now().plusDays(1);
+        task.setCreatedAt(date);
+
+        return taskRepository.save(task);
     }
 
     public Task getTask(Integer taskId) throws Exception {
@@ -38,10 +51,6 @@ public class TaskService {
         if (task == null) {
             throw new Exception("No task with that ID");
         }
-
-        LocalDate date = LocalDate.now().plusDays(1);
-       task.setCreatedAt(date);
-
-        return taskRepository.save(task);
+        return task;
     }
 }
