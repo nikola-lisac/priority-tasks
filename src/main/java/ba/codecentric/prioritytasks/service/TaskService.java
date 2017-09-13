@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -53,4 +55,12 @@ public class TaskService {
         }
         return task;
     }
+  public List<Task> getAllTasks(Date date) {
+    return taskRepository.findByCreatedAt(date);
+  }
+
+  @Transactional
+  public void updateComplete(Integer id) {
+    taskRepository.updateCompletedById(id);
+  }
 }

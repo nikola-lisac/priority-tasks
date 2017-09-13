@@ -50,6 +50,18 @@ public class TaskController {
     public Task postponeTasks(@PathVariable Integer id) throws Exception {
         return taskService.postponeTasks(id);
     }
+    List<Task> tasks = taskService.getAllTasks(date);
+    if (tasks.isEmpty()) {
+      throw new Exception("No more tasks");
+    }
+    return tasks;
+  }
+
+  @PutMapping(value = "/tasks/{id}")
+  public void completeTask(@PathVariable Integer id) {
+    taskService.updateComplete(id);
+  }
+}
 
     @PutMapping(value = "/tasks/{id}")
     public Task getTask(@PathVariable Integer id) throws Exception {
