@@ -6,12 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface TaskRepository extends JpaRepository<Task, Integer> {
 
-    List<Task> findByCreatedAt(Date date);
+    List<Task> findByCreatedAt(LocalDate date);
 
     @Modifying
     @Query("UPDATE Task task SET task.completed = 1 WHERE task.id = ?1")

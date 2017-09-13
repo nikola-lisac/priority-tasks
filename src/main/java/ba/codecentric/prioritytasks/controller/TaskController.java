@@ -12,43 +12,52 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
 @CrossOrigin
 public class TaskController {
 
-  private final TaskService taskService;
+    private final TaskService taskService;
 
-  @Autowired
-  public TaskController(TaskService taskService) {
-    this.taskService = taskService;
-  }
-
-  @PostMapping(value = "/tasks")
-  public Task saveNewTask(@RequestBody Task task) {
-    return taskService.saveTask(task);
-  }
-
-  @GetMapping(value = "/tasks")
-  public List<Task> getAllTasks() {
-    return taskService.getAllTasks();
-  }
-
-  @GetMapping(value = "/tasks/{date}")
-  public List<Task> getAllTasks(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date date)
-      throws Exception {
-
-    List<Task> tasks = taskService.getAllTasks(date);
-    if (tasks.isEmpty()) {
-      throw new Exception("No more tasks");
+    @Autowired
+    public TaskController(TaskService taskService){
+        this.taskService = taskService;
     }
-    return tasks;
-  }
 
-  @PutMapping(value = "/tasks/{id}")
-  public void completeTask(@PathVariable Integer id) {
-    taskService.updateComplete(id);
-  }
+    @PostMapping(value = "/tasks")
+    public Task saveNewTask(@RequestBody Task task) {
+        return taskService.saveTask(task);
+    }
+
+    @GetMapping(value = "/tasks")
+    public List<Task> getAllTasks() {
+        return taskService.getAllTasks();
+    }
+
+    @GetMapping(value = "/tasks/{date}")
+    public List<Task> getAllTasks(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) throws Exception {
+
+        List<Task> tasks = taskService.getAllTasks(date);
+        if (tasks.isEmpty()) {
+            throw new Exception("No more tasks");
+        }
+        return tasks;
+    }
+
+    @PostMapping(value = "/tasks/{id}")
+    public Task postponeTasks(@PathVariable Integer id) throws Exception {
+        return taskService.postponeTasks(id);
+    }
+
+    @PutMapping(value = "/tasks/{id}")
+    public void completeTask(@PathVariable Integer id) {
+        taskService.updateComplete(id);
+    }
+
+    @PutMapping(value = "/task/{id}")
+    public Task getTask(@PathVariable Integer id) throws Exception {
+        return taskService.getTask(id);
+    }
 }

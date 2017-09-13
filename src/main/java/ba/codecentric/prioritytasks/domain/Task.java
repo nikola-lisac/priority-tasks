@@ -1,9 +1,16 @@
 package ba.codecentric.prioritytasks.domain;
 
+import ba.codecentric.prioritytasks.config.LocalDateDeserializer;
+import ba.codecentric.prioritytasks.config.LocalDateSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
+
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class Task {
@@ -12,7 +19,10 @@ public class Task {
     @GeneratedValue
     private Integer id;
     private String name;
-    private Date createdAt;
+    @Convert(converter = Jsr310JpaConverters.LocalDateConverter.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    private LocalDate createdAt;
     private boolean completed;
 
     public Integer getId() {
@@ -31,11 +41,11 @@ public class Task {
         this.name = name;
     }
 
-    public Date getCreatedAt() {
+    public LocalDate getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
     }
 
