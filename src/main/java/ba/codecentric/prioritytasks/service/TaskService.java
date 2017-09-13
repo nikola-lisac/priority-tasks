@@ -5,9 +5,8 @@ import ba.codecentric.prioritytasks.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import javax.transaction.Transactional;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -26,10 +25,6 @@ public class TaskService {
 
     public List<Task> getAllTasks() {
         return taskRepository.findAll();
-    }
-
-    public List<Task> getAllTasks(LocalDate date) {
-        return taskRepository.findByCreatedAt(date);
     }
 
     public Task postponeTasks(Integer taskId) throws Exception {
@@ -55,12 +50,13 @@ public class TaskService {
         }
         return task;
     }
-  public List<Task> getAllTasks(Date date) {
-    return taskRepository.findByCreatedAt(date);
-  }
 
-  @Transactional
-  public void updateComplete(Integer id) {
-    taskRepository.updateCompletedById(id);
-  }
+    public List<Task> getAllTasks(LocalDate date) {
+        return taskRepository.findByCreatedAt(date);
+    }
+
+    @Transactional
+    public void updateComplete(Integer id) {
+        taskRepository.updateCompletedById(id);
+    }
 }
