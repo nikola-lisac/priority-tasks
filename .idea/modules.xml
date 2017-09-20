@@ -4,8 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/priority-tasks-backend.iml" filepath="$PROJECT_DIR$/.idea/modules/priority-tasks-backend.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/priority-tasks-backend_main.iml" filepath="$PROJECT_DIR$/.idea/modules/priority-tasks-backend_main.iml" group="priority-tasks-backend" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/priority-tasks-backend_main.iml" filepath="$PROJECT_DIR$/.idea/modules/priority-tasks-backend_main.iml" group="priority-tasks-backend" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/priority-tasks-backend_test.iml" filepath="$PROJECT_DIR$/.idea/modules/priority-tasks-backend_test.iml" group="priority-tasks-backend" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/priority-tasks-backend_test.iml" filepath="$PROJECT_DIR$/.idea/modules/priority-tasks-backend_test.iml" group="priority-tasks-backend" />
     </modules>
   </component>

@@ -24,7 +24,7 @@ public class TaskService {
     }
 
     public List<Task> getAllTasks() {
-        return taskRepository.findAll();
+        return taskRepository.findAllByOrderByCompletedAscIdDesc();
     }
 
     public Task postponeTasks(Integer taskId) throws Exception {
@@ -58,5 +58,13 @@ public class TaskService {
     @Transactional
     public void updateComplete(Integer id) {
         taskRepository.updateCompletedById(id);
+    }
+
+    public List<Task> getAllCompletedTasks() {
+        return taskRepository.findAllByCompleted();
+    }
+
+    public void deleteTask(Integer taskId) {
+        taskRepository.delete(taskId);
     }
 }
