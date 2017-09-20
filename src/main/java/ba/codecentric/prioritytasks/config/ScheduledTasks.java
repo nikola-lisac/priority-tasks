@@ -18,7 +18,7 @@ public class ScheduledTasks {
         this.taskService = taskService;
     }
 
-    @Scheduled(cron = "0 0 12 * * ?")
+    @Scheduled(cron = "0 55 23 * * ?")
     public void postponeAndDeleteTasks() throws Exception {
 
         LocalDate date = LocalDate.now();

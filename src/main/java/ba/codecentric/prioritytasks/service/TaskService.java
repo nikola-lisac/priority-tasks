@@ -35,8 +35,10 @@ public class TaskService {
             throw new Exception("No task with that ID");
         }
 
-        LocalDate date = LocalDate.now().plusDays(1);
-        task.setCreatedAt(date);
+        taskRepository.delete(taskId);
+
+        task.setId(null);
+        task.setCreatedAt(LocalDate.now().plusDays(1));
 
         return taskRepository.save(task);
     }
