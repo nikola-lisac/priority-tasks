@@ -16,4 +16,9 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
     @Modifying
     @Query("UPDATE Task task SET task.completed = 1 WHERE task.id = ?1")
     void updateCompletedById(Integer id);
+
+    List<Task> findAllByOrderByCompletedAscIdDesc();
+
+    @Query(value = "SELECT t FROM Task t WHERE t.completed=true")
+    List<Task> findAllByCompleted();
 }

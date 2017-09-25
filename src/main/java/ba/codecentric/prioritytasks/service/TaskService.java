@@ -24,7 +24,7 @@ public class TaskService {
     }
 
     public List<Task> getAllTasks() {
-        return taskRepository.findAll();
+        return taskRepository.findAllByOrderByCompletedAscIdDesc();
     }
 
     public Task postponeTasks(Integer taskId) throws Exception {
@@ -35,8 +35,10 @@ public class TaskService {
             throw new Exception("No task with that ID");
         }
 
-        LocalDate date = LocalDate.now().plusDays(1);
-        task.setCreatedAt(date);
+        taskRepository.delete(taskId);
+
+        task.setId(null);
+        task.setCreatedAt(LocalDate.now().plusDays(1));
 
         return taskRepository.save(task);
     }
@@ -58,5 +60,13 @@ public class TaskService {
     @Transactional
     public void updateComplete(Integer id) {
         taskRepository.updateCompletedById(id);
+    }
+
+    public List<Task> getAllCompletedTasks() {
+        return taskRepository.findAllByCompleted();
+    }
+
+    public void deleteTask(Integer taskId) {
+        taskRepository.delete(taskId);
     }
 }
