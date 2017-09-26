@@ -69,4 +69,18 @@ public class TaskService {
     public void deleteTask(Integer taskId) {
         taskRepository.delete(taskId);
     }
+
+    public Task uncompletedTask(Integer taskId) throws Exception {
+
+        Task task = taskRepository.findOne(taskId);
+
+        if (task == null) {
+            throw new Exception("No task with that ID");
+        }
+        taskRepository.delete(taskId);
+
+        task.setId(null);
+        saveTask(task);
+        return saveTask(task);
+    }
 }

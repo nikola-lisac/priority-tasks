@@ -66,4 +66,8 @@ public class TaskController {
     public void deleteTask(@PathVariable Integer id) throws Exception {
         taskService.deleteTask(id);
     }
+    @PostMapping(value = "/task/{id}")
+    public Task uncompletedTask(@PathVariable Integer id) throws Exception {
+        return taskService.uncompletedTask(id);
+    }
 }
