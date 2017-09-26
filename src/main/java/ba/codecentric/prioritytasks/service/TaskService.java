@@ -80,6 +80,7 @@ public class TaskService {
         taskRepository.delete(taskId);
 
         task.setId(null);
+        task.setCompleted(false);
         saveTask(task);
         return saveTask(task);
     }
