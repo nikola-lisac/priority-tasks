@@ -5,6 +5,7 @@ import ba.codecentric.prioritytasks.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +23,7 @@ public class TaskController {
     private final TaskService taskService;
 
     @Autowired
-    public TaskController(TaskService taskService){
+    public TaskController(TaskService taskService) {
         this.taskService = taskService;
     }
 
@@ -59,5 +60,10 @@ public class TaskController {
     @PutMapping(value = "/task/{id}")
     public Task getTask(@PathVariable Integer id) throws Exception {
         return taskService.getTask(id);
+    }
+
+    @DeleteMapping(value = "/task/{id}")
+    public void deleteTask(@PathVariable Integer id) throws Exception {
+        taskService.deleteTask(id);
     }
 }
